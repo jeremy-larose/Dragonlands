@@ -14,7 +14,7 @@ public class ScrollingText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _animator = dialogue.GetComponent<Animator>();
+        _animator = dialogue.GetComponentInChildren<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)

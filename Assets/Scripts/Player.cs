@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     {
         _change.x = Input.GetAxisRaw("Horizontal");
         _change.z = Input.GetAxisRaw("Vertical");
-
+/*
         if (Input.GetKeyDown(KeyCode.T) )
         {
             if( torch.isActiveAndEnabled )
@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
             {
                 torch.gameObject.SetActive( true );
             }
-        }
+        } */
     }
 
     private void FixedUpdate()

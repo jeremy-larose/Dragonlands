@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public List<GameObject> NPCList;
     public GameObject player;
+    private Character playerCharacter;
+    private GameObject _audioManager;
     
     #region Singleton
 
@@ -23,16 +25,26 @@ public class GameManager : MonoBehaviour
     }
     #endregion
     
-    
-    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find( "Player");
+        playerCharacter = player.GetComponent<Character>();
+
+        TimeSystem.OnTick += delegate
+        {
+        };
+
+        TimeSystem.OnTick_5 += delegate
+        {
+        };
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Debug.Log( "[GameManager] Forcing the player to take damage!");
+            playerCharacter.TakeDamage( Dice.Roll( 1, 8 ));
+        }
     }
 }

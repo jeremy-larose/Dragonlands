@@ -56,13 +56,14 @@ public class AudioManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            OnChangeBackgroundMusic?.Invoke( this, new OnChangeBackgroundMusicEventArgs{ bgMusic = GameAssets.I.townMusic });
+            Debug.Log( "Changing Background Music.");
+            OnChangeBackgroundMusic?.Invoke( this, new OnChangeBackgroundMusicEventArgs{ bgMusic = GameAssets.i.townMusic });
         }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
             Debug.Log( "Playing sound effect!");
-            OnPlaySoundEffect?.Invoke(this, new OnPlaySoundEffectEventArgs{ soundEffect = GameAssets.I.fireCrackle });
+            OnPlaySoundEffect?.Invoke(this, new OnPlaySoundEffectEventArgs{ soundEffect = GameAssets.i.fireCrackle });
         }
     }
 }
