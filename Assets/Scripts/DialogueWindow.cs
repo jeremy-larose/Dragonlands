@@ -1,20 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
-//Created by Allen Devs 2020, free to use in your game, don't sweat it, enjoy!
- 
-using System.Collections;
-using UnityEngine;
-using TMPro;
- 
 public class DialogueWindow : MonoBehaviour
 {
-    const string kAlphaCode = "<color=#00000000>";
-    const float kMaxTextTime = 0.1f;
+    private const string KAlphaCode = "<color=#00000000>";
+    private const float KMaxTextTime = 0.1f;
     public int typeSpeed = 2;
  
     public TMP_Text Text;
@@ -96,10 +87,10 @@ public class DialogueWindow : MonoBehaviour
         {
             alphaIndex++;
             Text.text = originalText;
-            displayedText = Text.text.Insert(alphaIndex, kAlphaCode);
+            displayedText = Text.text.Insert(alphaIndex, KAlphaCode);
             Text.text = displayedText;
  
-            yield return new WaitForSecondsRealtime(kMaxTextTime / typeSpeed);
+            yield return new WaitForSecondsRealtime(KMaxTextTime / typeSpeed);
         }
  
         State = DialogueState.Waiting;

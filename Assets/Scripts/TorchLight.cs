@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 using System;
-using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
  
 [RequireComponent(typeof (Light))]
 public class TorchLight : MonoBehaviour {
  
-    public float MinLightIntensity = 1.5F;
-    public float MaxLightIntensity = 4.0F;
+    public float minLightIntensity = 1.5F;
+    public float maxLightIntensity = 4.0F;
  
-    public float AccelerateTime = 0.15f;
+    public float accelerateTime = 0.15f;
  
     private float _targetIntensity = 1.0f;
     private float _lastIntensity = 1.0f;
@@ -30,11 +27,11 @@ public class TorchLight : MonoBehaviour {
  
     private void FixedUpdate() {
         _timePassed += Time.deltaTime;
-        _lt.intensity = Mathf.Lerp(_lastIntensity, _targetIntensity, _timePassed/AccelerateTime);
+        _lt.intensity = Mathf.Lerp(_lastIntensity, _targetIntensity, _timePassed/accelerateTime);
  
         if (Math.Abs(_lt.intensity - _targetIntensity) < Tolerance) {
             _lastIntensity = _lt.intensity;
-            _targetIntensity = Random.Range(MinLightIntensity, MaxLightIntensity);
+            _targetIntensity = Random.Range(minLightIntensity, maxLightIntensity);
             _timePassed = 0.0f;
         }
     }
