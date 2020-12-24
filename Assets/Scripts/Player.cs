@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private static readonly int Moving = Animator.StringToHash("moving");
     private static readonly int MoveZ = Animator.StringToHash("moveZ");
     private static readonly int MoveX = Animator.StringToHash("moveX");
+    private static readonly int Attacking = Animator.StringToHash("attacking");
 
     // Start is called before the first frame update
     void Start()
@@ -28,8 +29,8 @@ public class Player : MonoBehaviour
     {
         _change.x = Input.GetAxisRaw("Horizontal");
         _change.z = Input.GetAxisRaw("Vertical");
-/*
-        if (Input.GetKeyDown(KeyCode.T) )
+
+        if (Input.GetKeyDown(KeyCode.F1) )
         {
             if( torch.isActiveAndEnabled )
                 torch.gameObject.SetActive( false );
@@ -37,13 +38,25 @@ public class Player : MonoBehaviour
             {
                 torch.gameObject.SetActive( true );
             }
-        } */
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(Attack());
+        }
     }
 
     private void FixedUpdate()
     {
         AnimateAndMoveCharacter();
 
+    }
+
+    private IEnumerator Attack()
+    {
+        _myAnimator.SetBool( Attacking, true );
+        yield return new WaitForSeconds(.4f);
+        _myAnimator.SetBool( Attacking, false);
     }
 
     void AnimateAndMoveCharacter()
