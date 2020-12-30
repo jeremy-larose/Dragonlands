@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.Find("Player");
         playerCharacter = player.GetComponent<Character>();
 
         TimeSystem.OnTick += delegate { };
@@ -51,6 +50,8 @@ public class GameManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(gameObject);
+
+        player = GameObject.Find("Player");
     }
 
     #endregion

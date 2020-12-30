@@ -47,3 +47,8 @@ MonoBehaviour:
   overworldMusic: {fileID: 0}
   fireCrackle: {fileID: 8300000, guid: 8e5c710abbb37734ab950e0ad3f5d56e, type: 3}
   pfCombatText: {fileID: 6715257953603238823, guid: b55154eb3b616fa4c8c5a6a53acdb1b0, type: 3}
+  pfGroundItem: {fileID: 2472410803603511507, guid: 622ce253a9d3506428bfd408f8b0fed3, type: 3}
+  defaultSprite: {fileID: 685494816904236396, guid: 7a5287efc67939b4f813ea3a08a50e66, type: 3}
+  swordSprite: {fileID: 1571695429217454583, guid: 7a5287efc67939b4f813ea3a08a50e66, type: 3}
+  healthPotionSprite: {fileID: -4987236710857148075, guid: 7a5287efc67939b4f813ea3a08a50e66, type: 3}
+  coinSprite: {fileID: 6151569089762668857, guid: 7a5287efc67939b4f813ea3a08a50e66, type: 3}
