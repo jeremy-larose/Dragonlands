@@ -23,8 +23,8 @@ public class Player : MonoBehaviour
         _myRigidbody = GetComponent<Rigidbody>();
         _myAnimator = GetComponentInChildren<Animator>();
         _myCharacter = GetComponent<Character>();
+        _inventory = _myCharacter.Inventory;
 
-        _inventory = new Inventory(UseItem);
         _uiInventory.SetPlayer(this);
         _uiInventory.SetInventory(_inventory);
     }
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
                 torch.gameObject.SetActive(true);
         }
 
-        if (Input.GetMouseButtonDown(0)) StartCoroutine(Attack());
+        if (Input.GetKeyDown(KeyCode.Space)) StartCoroutine(Attack());
     }
 
     private void FixedUpdate()
@@ -90,24 +90,5 @@ public class Player : MonoBehaviour
     public Vector3 GetPosition()
     {
         return transform.position;
-    }
-
-    private void UseItem(Item item)
-    {
-        switch (item.itemType)
-        {
-            case Item.ItemType.HealthPotion:
-                Debug.Log("[Player] Using Health Potion!");
-                _myCharacter.healthSystem.Heal(Dice.Roll(1, 8));
-                _inventory.RemoveItem(new Item {itemType = Item.ItemType.HealthPotion, amount = 1});
-                break;
-            case Item.ItemType.Coin:
-                Debug.Log("[Player] Using a coin!");
-                _inventory.RemoveItem(new Item {itemType = Item.ItemType.Coin, amount = 1});
-                break;
-            default:
-                Debug.Log("[Player] Using an item, but no action defined.");
-                break;
-        }
     }
 }
