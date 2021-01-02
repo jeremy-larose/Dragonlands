@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class ItemGround : MonoBehaviour
 {
-    private Item _item;
-    private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Item _item;
 
+    private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {

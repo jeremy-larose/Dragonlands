@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private UIInventory _uiInventory;
+    private Camera _camera;
     private Vector3 _change = Vector3.zero;
     private Inventory _inventory;
     private Animator _myAnimator;
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
         _myAnimator = GetComponentInChildren<Animator>();
         _myCharacter = GetComponent<Character>();
         _inventory = _myCharacter.Inventory;
+        _camera = Camera.main;
 
         _uiInventory.SetPlayer(this);
         _uiInventory.SetInventory(_inventory);
@@ -49,6 +51,11 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         AnimateAndMoveCharacter();
+    }
+
+    private void LateUpdate()
+    {
+        //transform.LookAt(_camera.transform);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -17,7 +17,6 @@ public class Inventory
         AddItem(new Item {itemType = Item.ItemType.Sword, amount = 1});
         AddItem(new Item {itemType = Item.ItemType.Coin, amount = 1});
 
-
         Debug.Log($"[Inventory] Contains {itemList.Count}");
     }
 

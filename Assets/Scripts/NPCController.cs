@@ -9,6 +9,7 @@ public class NPCController : MonoBehaviour
     private static readonly int MoveZ = Animator.StringToHash("moveZ");
     private static readonly int Attacking = Animator.StringToHash("attacking");
     [SerializeField] private State _state;
+    [SerializeField] private Behavior _behavior;
 
     [SerializeField] private GameObject aggroIndicator;
     public float aggroRadius;
@@ -42,7 +43,10 @@ public class NPCController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        HandleNPCState();
+        if (_behavior == Behavior.Wander)
+        {
+            HandleNPCWander();
+        }
     }
 
     private void FixedUpdate()
@@ -83,7 +87,7 @@ public class NPCController : MonoBehaviour
             _animator.SetBool(Moving, true);
             Vector3 velocity;
             (velocity = _navMesh.velocity).Normalize();
-            _animator.SetFloat(MoveX, -velocity.x);
+            _animator.SetFloat(MoveX, velocity.x);
             _animator.SetFloat(MoveZ, velocity.z);
         }
         else
@@ -92,7 +96,7 @@ public class NPCController : MonoBehaviour
         }
     }
 
-    private void HandleNPCState()
+    private void HandleNPCWander()
     {
         switch (_state)
         {
@@ -141,5 +145,12 @@ public class NPCController : MonoBehaviour
     {
         Roaming,
         ChasingPlayer
+    }
+
+    private enum Behavior
+    {
+        Idle,
+        Wander,
+        Patrolling
     }
 }
