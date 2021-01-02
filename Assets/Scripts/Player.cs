@@ -58,18 +58,6 @@ public class Player : MonoBehaviour
         //transform.LookAt(_camera.transform);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        var itemGround = other.GetComponent<ItemGround>();
-
-        if (itemGround != null)
-        {
-            // Touching Item
-            _inventory.AddItem(itemGround.GetItem());
-            itemGround.DestroySelf();
-        }
-    }
-
     private IEnumerator Attack()
     {
         _myAnimator.SetBool(Attacking, true);

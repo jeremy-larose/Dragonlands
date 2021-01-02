@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 0fcf9837ada7ea24091a32a245b46158
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Argos
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: d4c0c3764a2a7ee4f97f165b4089cb81, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -4,7 +4,13 @@ public class Interactable : MonoBehaviour
 {
     public float radius = 1f; // How close to interact with the object
     public Transform interactionTransform;
-    private bool hasInteracted = false;
+    public bool playerInRange = false;
+    private Transform player;
+
+
+    private void Update()
+    {
+    }
 
     private void OnDrawGizmosSelected()
     {
@@ -17,8 +23,19 @@ public class Interactable : MonoBehaviour
         Gizmos.DrawWireSphere(interactionTransform.position, radius);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        playerInRange = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        playerInRange = false;
+    }
+
+    // This method is meant to be overridden
     public virtual void Interact()
     {
-        Debug.Log($"[Interactable]: Interacting with {transform.gameObject.name}");
+        Debug.Log($"Interacting with {transform.name}");
     }
 }

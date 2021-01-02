@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9af4529a09de2d94ebb6c31ed22691ad, type: 2}
+  - {fileID: 2100000, guid: 87ebcbb9d734e0b4e8f80569d9a9c633, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minLightIntensity: 0.5
-  maxLightIntensity: 1
+  maxLightIntensity: 4
   accelerateTime: 0.15
 --- !u!212 &7982568872385899331
 SpriteRenderer:
@@ -290,8 +290,8 @@ GameObject:
   - component: {fileID: 6168311975157773145}
   - component: {fileID: 7266301441954052792}
   - component: {fileID: 3635048263177945038}
-  - component: {fileID: 621806510711104428}
   - component: {fileID: 4426618873661504325}
+  - component: {fileID: 650005875}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Player
@@ -359,19 +359,6 @@ MonoBehaviour:
   torch: {fileID: 1449198175685388339}
   moveSpeed: 2
   _uiInventory: {fileID: 0}
---- !u!135 &621806510711104428
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8616573896395269970}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &4426618873661504325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +373,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charName: 
   maxHP: 20
+--- !u!65 &650005875
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616573896395269970}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.97158384, y: 0.5253601, z: 0.615808}
+  m_Center: {x: -0.014208078, y: 0.23731995, z: -0.031603575}
 --- !u!1001 &4303239408670834036
 PrefabInstance:
   m_ObjectHideFlags: 0

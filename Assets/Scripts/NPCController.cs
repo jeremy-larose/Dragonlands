@@ -87,7 +87,9 @@ public class NPCController : MonoBehaviour
             _animator.SetBool(Moving, true);
             Vector3 velocity;
             (velocity = _navMesh.velocity).Normalize();
-            _animator.SetFloat(MoveX, velocity.x);
+
+            // Have to pass flipped value here because of LookAt camera in LateUpdate
+            _animator.SetFloat(MoveX, -velocity.x);
             _animator.SetFloat(MoveZ, velocity.z);
         }
         else

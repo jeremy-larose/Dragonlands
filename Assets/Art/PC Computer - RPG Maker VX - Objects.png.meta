@@ -5644,10 +5644,10 @@ TextureImporter:
       name: PC Computer - RPG Maker VX - Objects_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1264
-        width: 32
-        height: 32
+        x: 17
+        y: 1230
+        width: 33
+        height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5665,10 +5665,10 @@ TextureImporter:
       name: PC Computer - RPG Maker VX - Objects_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 1264
-        width: 32
-        height: 32
+        x: 49
+        y: 1230
+        width: 34
+        height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
