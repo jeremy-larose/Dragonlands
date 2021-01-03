@@ -16,13 +16,16 @@ public class NPCController : MonoBehaviour
     public float attackRange;
     public float moveSpeed;
     public float attackSpeed;
+    public AttackDefinition attackAbility;
     private Animator _animator;
     private Camera _camera;
     private MeshRenderer _meshRenderer;
+    private Character _myCharacter;
     private NavMeshAgent _navMesh;
     private Player _player;
     private Vector3 _roamPosition;
     private Vector3 _startingPosition;
+    private float timeOfLastAttack;
 
     private void Awake()
     {
@@ -31,6 +34,8 @@ public class NPCController : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _camera = Camera.main;
         _player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        _myCharacter = GetComponent<Character>();
+        timeOfLastAttack = float.MinValue;
     }
 
 // Start is called before the first frame update
@@ -46,6 +51,21 @@ public class NPCController : MonoBehaviour
         if (_behavior == Behavior.Wander)
         {
             HandleNPCWander();
+        }
+
+        if (_state == State.Attacking)
+        {
+            float timeSinceLastAttack = Time.time - timeOfLastAttack;
+            bool attackOnCooldown = timeSinceLastAttack < attackAbility.cooldown;
+            _navMesh.isStopped = attackOnCooldown;
+            float distanceFromPlayer = Vector3.Distance(transform.position, _player.transform.position);
+            bool attackInRange = distanceFromPlayer < attackAbility.range;
+
+            if (!attackOnCooldown && attackInRange)
+            {
+                timeOfLastAttack = Time.time;
+                StartCoroutine(Attack());
+            }
         }
     }
 
@@ -63,6 +83,10 @@ public class NPCController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, aggroRadius);
+    }
+
+    public void Hit()
+    {
     }
 
     private Vector3 GetRoamingPosition()
@@ -122,7 +146,10 @@ public class NPCController : MonoBehaviour
                 }
 
                 if (Vector3.Distance(transform.position, _navMesh.destination) < attackRange)
+                {
                     Debug.Log($"[NPCController: {name} attacking Player!");
+                    _state = State.Attacking;
+
 /*                    if (!GetComponent<Character>().Traits.ContainsKey(Character.CharacterFlags.Pacifist))
                     {
                         Debug.Log( "NPCController: Would have attacked, but is set to pacifist!");
@@ -131,14 +158,34 @@ public class NPCController : MonoBehaviour
                     {
                         StartCoroutine(Attack());
                     } */
+                }
+
+                break;
+
+            case State.Attacking:
+
+                if (Vector3.Distance(transform.position, _navMesh.destination) < attackRange)
+                {
+                    _state = State.ChasingPlayer;
+                    _navMesh.destination = _player.transform.position;
+                    aggroIndicator.gameObject.SetActive(true);
+                }
+
                 break;
         }
     }
 
     private IEnumerator Attack()
     {
+        Vector3 attackDir = transform.position - _player.transform.position;
+        attackDir.Normalize();
+        _animator.SetFloat(MoveX, attackDir.x);
+        _animator.SetFloat(MoveZ, attackDir.z);
         _animator.SetBool(Attacking, true);
         aggroIndicator.gameObject.SetActive(false);
+        var attack = attackAbility.CreateAttack(_myCharacter, _player);
+        _player.TakeDamage(attack.Damage);
+
         yield return new WaitForSeconds(attackSpeed);
         _animator.SetBool(Attacking, false);
     }
@@ -146,7 +193,8 @@ public class NPCController : MonoBehaviour
     private enum State
     {
         Roaming,
-        ChasingPlayer
+        ChasingPlayer,
+        Attacking
     }
 
     private enum Behavior

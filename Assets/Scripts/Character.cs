@@ -6,9 +6,14 @@ public class Character : MonoBehaviour
 
     public string charName;
     public int maxHP = 20;
+    [SerializeField] private int attackDamage;
+    [SerializeField] private int armorClass;
+    public GameObject weapon;
 
     public HealthSystem HealthSystem;
     public Inventory Inventory;
+
+
     public static Character Instance { get; private set; }
 
     public int CurrentHP { get; private set; }
@@ -19,16 +24,29 @@ public class Character : MonoBehaviour
         HealthSystem = new HealthSystem(Dice.Roll(4, 8), 50);
         CurrentHP = HealthSystem.GetHealth();
         Inventory = new Inventory(UseItem);
-
         TimeSystem.OnTick_5 += RegenHealth;
-        charName = "Jerekai";
+    }
+
+    private void Update()
+    {
+    }
+
+    public int GetDamage()
+    {
+        return attackDamage;
+    }
+
+    public int GetArmor()
+    {
+        return armorClass;
     }
 
     public static event HealthChanged OnHealthChanged;
 
     private void RegenHealth(object sender, TimeSystem.OnTickEventArgs e)
     {
-        AddHealth(5);
+        if (this.CompareTag("Player"))
+            AddHealth(5);
     }
 
     private void AddHealth(int healing)
@@ -74,6 +92,8 @@ public class Character : MonoBehaviour
     {
         // Die in some way.
         // This method is meant to be overwritten.
+        TimeSystem.OnTick_5 -= RegenHealth;
+
         Debug.Log($"[Character] {charName} has died.");
     }
 

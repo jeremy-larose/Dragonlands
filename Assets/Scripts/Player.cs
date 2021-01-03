@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
     private static readonly int Moving = Animator.StringToHash("moving");
     private static readonly int MoveZ = Animator.StringToHash("moveZ");
@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private Animator _myAnimator;
     private Character _myCharacter;
     private Rigidbody _myRigidbody;
+    private Weapon _myWeapon;
 
     // Start is called before the first frame update
     private void Start()
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
         _myCharacter = GetComponent<Character>();
         _inventory = _myCharacter.Inventory;
         _camera = Camera.main;
+        _myWeapon = GetComponentInChildren<Weapon>();
 
         _uiInventory.SetPlayer(this);
         _uiInventory.SetInventory(_inventory);
@@ -45,7 +47,10 @@ public class Player : MonoBehaviour
                 torch.gameObject.SetActive(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) StartCoroutine(Attack());
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(Attack());
+        }
     }
 
     private void FixedUpdate()
@@ -80,10 +85,5 @@ public class Player : MonoBehaviour
         {
             _myAnimator.SetBool(Moving, false);
         }
-    }
-
-    public Vector3 GetPosition()
-    {
-        return transform.position;
     }
 }

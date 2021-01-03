@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1258699449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675651358736070936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb90236c3c67b9f428b811ce4353f6ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2102067149453308429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17,15 +29,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 751281894468061969, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.9164066
+      value: 5.526
       objectReference: {fileID: 0}
     - target: {fileID: 751281894468061969, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.000994
+      value: 2.090001
       objectReference: {fileID: 0}
     - target: {fileID: 751281894468061969, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.886892
+      value: -5.26
       objectReference: {fileID: 0}
     - target: {fileID: 751281894468061969, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
       propertyPath: m_LocalRotation.w
@@ -55,9 +67,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 751281894468061972, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 751281894468061972, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 751281894468061973, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
       propertyPath: m_Name
-      value: NPC_Rat
+      value: NPC_Rat (1)
       objectReference: {fileID: 0}
     - target: {fileID: 751281894468061973, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
       propertyPath: m_Layer
@@ -132,6 +152,10 @@ PrefabInstance:
       value: A deadly rat
       objectReference: {fileID: 0}
     - target: {fileID: 7630876160467072485, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
+      propertyPath: attack
+      value: 
+      objectReference: {fileID: 11400000, guid: 260ed98db5eadbd4bb29589cf05905c2, type: 2}
+    - target: {fileID: 7630876160467072485, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
       propertyPath: _behavior
       value: 1
       objectReference: {fileID: 0}
@@ -144,11 +168,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7630876160467072485, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
+      propertyPath: attackAbility
+      value: 
+      objectReference: {fileID: 11400000, guid: 260ed98db5eadbd4bb29589cf05905c2, type: 2}
+    - target: {fileID: 7630876160467072485, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
       propertyPath: aggroIndicator
       value: 
       objectReference: {fileID: 4948207313314350284}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
+--- !u!1 &1675651358736070936 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 751281894468061973, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
+  m_PrefabInstance: {fileID: 2102067149453308429}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4948207313314350284 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6451295118513747649, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}

@@ -117,6 +117,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &196775218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622082596230071364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0930d0a7514d554458be395a8c04df35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  demoAttack: {fileID: 11400000, guid: 1418bed89fae6674186c7506c3f25da1, type: 2}
+  wielder: {fileID: 0}
 --- !u!1 &5041651398936827229
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +304,6 @@ GameObject:
   - component: {fileID: 6168311975157773145}
   - component: {fileID: 7266301441954052792}
   - component: {fileID: 3635048263177945038}
-  - component: {fileID: 4426618873661504325}
   - component: {fileID: 650005875}
   m_Layer: 0
   m_Name: Hero
@@ -356,23 +369,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 370114a02c9fe774da52e072633999d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  charName: Jerekai
+  maxHP: 20
+  attackDamage: 5
+  armorClass: 0
+  weapon: {fileID: 0}
   torch: {fileID: 1449198175685388339}
   moveSpeed: 2
   _uiInventory: {fileID: 0}
---- !u!114 &4426618873661504325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8616573896395269970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bd008fc4b8147145b354335d5d2c26d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  charName: 
-  maxHP: 20
 --- !u!65 &650005875
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -467,5 +471,10 @@ PrefabInstance:
 --- !u!4 &7415204910880726906 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6723932403570467342, guid: dd77abf769241e347b1d346125ed65f2, type: 3}
+  m_PrefabInstance: {fileID: 4303239408670834036}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1622082596230071364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3259171231603783984, guid: dd77abf769241e347b1d346125ed65f2, type: 3}
   m_PrefabInstance: {fileID: 4303239408670834036}
   m_PrefabAsset: {fileID: 0}

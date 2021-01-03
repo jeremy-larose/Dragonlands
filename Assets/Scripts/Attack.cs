@@ -1,14 +1,12 @@
-using UnityEngine;
-
-public class Attack : MonoBehaviour
+public class Attack
 {
-    // Start is called before the first frame update
-    void Start()
+    public Attack(int damage, bool critical)
     {
+        Damage = damage;
+        IsCritical = critical;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+    public int Damage { get; }
+
+    public bool IsCritical { get; }
 }
