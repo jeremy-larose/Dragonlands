@@ -106,6 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6723932403570467342}
   - component: {fileID: 3258100328413320461}
+  - component: {fileID: 1010874364103770294}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -147,7 +148,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 87ebcbb9d734e0b4e8f80569d9a9c633, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -168,7 +169,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 748507fe95e169f468edec98dfaf7145, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2fe34a77d131a8c4abf7691c479b96fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -176,6 +177,20 @@ SpriteRenderer:
   m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1010874364103770294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8354252645291460572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0930d0a7514d554458be395a8c04df35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  demoAttack: {fileID: 11400000, guid: 1418bed89fae6674186c7506c3f25da1, type: 2}
+  wielder: {fileID: 0}

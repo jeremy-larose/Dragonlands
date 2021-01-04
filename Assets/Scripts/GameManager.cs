@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             Debug.Log("[GameManager] Forcing the player to take damage!");
-            playerCharacter.TakeDamage(Dice.Roll(1, 8));
+            playerCharacter.TakeDamage(Dice.Roll(1, 8), false);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))

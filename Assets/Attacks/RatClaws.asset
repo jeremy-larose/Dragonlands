@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RatClaws
   m_EditorClassIdentifier: 
   cooldown: 5
-  range: 1.5
+  range: 2
   minDamage: 1
   maxDamage: 4
   criticalMultiplier: 2

@@ -14,7 +14,7 @@ public class UICharacterScreen : MonoBehaviour
     {
         _character = GameManager.instance.player.GetComponent<Character>();
         nameText.text = _character.charName;
-        healthText.text = $"HP: {_character.GetHealth()} / {_character.GetHealthMax()}";
+        healthText.text = $"HP:{_character.GetHealth()}/{_character.GetHealthMax()}";
         healthBar.SetSize(_character.HealthSystem.GetHealthNormalized());
         Character.OnHealthChanged += CharacterOnHealthChanged;
     }

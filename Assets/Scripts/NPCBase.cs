@@ -4,5 +4,6 @@ public class NPCBase : Character
     {
         base.Die();
         Destroy(gameObject);
+        AudioManager.instance.PlayMusic(GameAssets.i.overworldMusic);
     }
 }

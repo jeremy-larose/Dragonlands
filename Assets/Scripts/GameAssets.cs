@@ -7,6 +7,7 @@ public class GameAssets : MonoBehaviour
     public AudioClip townMusic;
     public AudioClip overworldMusic;
     public AudioClip fireCrackle;
+    public AudioClip battleMusic;
 
     public Transform pfCombatText;
     public Transform pfGroundItem;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class Dice
@@ -11,9 +9,9 @@ public static class Dice
         {
             diceroll = Random.Range(1, sizeDice);
             total += diceroll;
-            Debug.Log( $"Rolling {numDice}d{sizeDice} = {diceroll}: Total: {total}");
+            Debug.Log($"Rolling {numDice}d{sizeDice} = {diceroll}: Total: {total}");
         }
-        
+
         return total;
     }
 }

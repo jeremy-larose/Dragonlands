@@ -77,7 +77,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 751281894468061973, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
       propertyPath: m_Name
-      value: NPC_Rat (1)
+      value: NPC_Rat
       objectReference: {fileID: 0}
     - target: {fileID: 751281894468061973, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
       propertyPath: m_Layer
@@ -143,10 +143,18 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5455735580327647537, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
+      propertyPath: m_Name
+      value: Weapon
+      objectReference: {fileID: 0}
     - target: {fileID: 6451295118513747649, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7305394603700944313, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 8354252645291460572, guid: 785ad7bc2ad7b6c449b933cb5377e8b9, type: 3}
     - target: {fileID: 7305394603700944313, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
       propertyPath: charName
       value: A deadly rat
@@ -168,13 +176,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7630876160467072485, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
+      propertyPath: attackSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630876160467072485, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
       propertyPath: attackAbility
       value: 
       objectReference: {fileID: 11400000, guid: 260ed98db5eadbd4bb29589cf05905c2, type: 2}
     - target: {fileID: 7630876160467072485, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
       propertyPath: aggroIndicator
       value: 
-      objectReference: {fileID: 4948207313314350284}
+      objectReference: {fileID: 7750388900866210685}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
 --- !u!1 &1675651358736070936 stripped
@@ -182,8 +194,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 751281894468061973, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
   m_PrefabInstance: {fileID: 2102067149453308429}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4948207313314350284 stripped
+--- !u!1 &7750388900866210685 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 6451295118513747649, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8548644954810616176, guid: 68f178f07178fcd4d8bb6c25901d72af, type: 3}
   m_PrefabInstance: {fileID: 2102067149453308429}
   m_PrefabAsset: {fileID: 0}

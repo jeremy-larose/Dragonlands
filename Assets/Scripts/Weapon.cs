@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public AttackDefinition demoAttack;
+    public AttackDefinition attackDefinition;
     public Character wielder;
     private bool hitOnce = false;
     private Character targetCharacter;
-
 
     private void Awake()
     {
@@ -39,10 +38,9 @@ public class Weapon : MonoBehaviour
     public void AttackTarget(GameObject target)
     {
         targetCharacter = target.GetComponent<Character>();
-        var attack = demoAttack.CreateAttack(wielder, targetCharacter);
+        var attack = attackDefinition.CreateAttack(wielder, targetCharacter);
         var attackables = target.GetComponentsInChildren(typeof(IAttackable));
 
-        targetCharacter.TakeDamage(attack.Damage);
         foreach (var component in attackables)
         {
             var attackable = (IAttackable) component;

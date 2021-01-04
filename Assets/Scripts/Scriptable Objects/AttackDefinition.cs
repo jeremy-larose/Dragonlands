@@ -19,12 +19,15 @@ public class AttackDefinition : ScriptableObject
         if (isCritical)
             coreDamage *= criticalMultiplier;
 
+
         AudioManager.instance.PlaySound(attackSound);
 
         if (defenderStats != null)
         {
             coreDamage -= defenderStats.GetArmor();
         }
+
+        defenderStats.TakeDamage((int) coreDamage, isCritical);
 
         return new Attack((int) coreDamage, isCritical);
     }

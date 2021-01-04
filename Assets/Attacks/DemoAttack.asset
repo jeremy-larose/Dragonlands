@@ -18,4 +18,4 @@ MonoBehaviour:
   maxDamage: 8
   criticalMultiplier: 2
   criticalChance: 0.3
-  attackSound: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: 90122f1917968c145ad4c362e991d188, type: 3}

@@ -8,18 +8,23 @@ public class NPCController : MonoBehaviour
     private static readonly int MoveX = Animator.StringToHash("moveX");
     private static readonly int MoveZ = Animator.StringToHash("moveZ");
     private static readonly int Attacking = Animator.StringToHash("attacking");
+    private static readonly int Attack = Animator.StringToHash("Attack");
     [SerializeField] private State _state;
     [SerializeField] private Behavior _behavior;
 
     [SerializeField] private GameObject aggroIndicator;
     public float aggroRadius;
-    public float attackRange;
     public float moveSpeed;
     public float attackSpeed;
     public AttackDefinition attackAbility;
+    [SerializeField] private int roamingRadius;
+    public AudioClip aggroSound;
+    [SerializeField] private GameObject attackTarget;
+    [SerializeField] private int activityLevel;
+
+    public Transform spellHotSpot;
     private Animator _animator;
     private Camera _camera;
-    private MeshRenderer _meshRenderer;
     private Character _myCharacter;
     private NavMeshAgent _navMesh;
     private Player _player;
@@ -30,7 +35,6 @@ public class NPCController : MonoBehaviour
     private void Awake()
     {
         _navMesh = GetComponent<NavMeshAgent>();
-        _meshRenderer = GetComponentInChildren<MeshRenderer>();
         _animator = GetComponentInChildren<Animator>();
         _camera = Camera.main;
         _player = GameObject.FindWithTag("Player").GetComponent<Player>();
@@ -57,14 +61,15 @@ public class NPCController : MonoBehaviour
         {
             float timeSinceLastAttack = Time.time - timeOfLastAttack;
             bool attackOnCooldown = timeSinceLastAttack < attackAbility.cooldown;
-            _navMesh.isStopped = attackOnCooldown;
             float distanceFromPlayer = Vector3.Distance(transform.position, _player.transform.position);
             bool attackInRange = distanceFromPlayer < attackAbility.range;
+
+            _navMesh.isStopped = attackOnCooldown;
 
             if (!attackOnCooldown && attackInRange)
             {
                 timeOfLastAttack = Time.time;
-                StartCoroutine(Attack());
+                Hit();
             }
         }
     }
@@ -85,14 +90,10 @@ public class NPCController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, aggroRadius);
     }
 
-    public void Hit()
-    {
-    }
-
     private Vector3 GetRoamingPosition()
     {
         return _startingPosition + new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized *
-            Random.Range(4f, 4f);
+            Random.Range(-roamingRadius, roamingRadius);
     }
 
     private void FindTarget()
@@ -130,7 +131,12 @@ public class NPCController : MonoBehaviour
                 _navMesh.destination = _roamPosition;
                 var reachedPositionDistance = 4f;
 
-                if (Vector3.Distance(transform.position, _roamPosition) < reachedPositionDistance) _roamPosition = GetRoamingPosition();
+                // Reached the target position radius
+                if (Vector3.Distance(transform.position, _roamPosition) < reachedPositionDistance)
+                    StartCoroutine(FindNextDestination());
+
+
+                //_roamPosition = GetRoamingPosition();
 
                 FindTarget();
                 break;
@@ -145,9 +151,11 @@ public class NPCController : MonoBehaviour
                     _state = State.Roaming;
                 }
 
-                if (Vector3.Distance(transform.position, _navMesh.destination) < attackRange)
+                var weapon = GetCurrentWeapon();
+
+                if (Vector3.Distance(transform.position, _navMesh.destination) < weapon.attackDefinition.range)
                 {
-                    Debug.Log($"[NPCController: {name} attacking Player!");
+                    attackTarget = _player.gameObject;
                     _state = State.Attacking;
 
 /*                    if (!GetComponent<Character>().Traits.ContainsKey(Character.CharacterFlags.Pacifist))
@@ -163,19 +171,32 @@ public class NPCController : MonoBehaviour
                 break;
 
             case State.Attacking:
-
-                if (Vector3.Distance(transform.position, _navMesh.destination) < attackRange)
+                if (Vector3.Distance(transform.position, _navMesh.destination) > aggroRadius)
                 {
-                    _state = State.ChasingPlayer;
-                    _navMesh.destination = _player.transform.position;
-                    aggroIndicator.gameObject.SetActive(true);
+                    aggroIndicator.gameObject.SetActive(false);
+                    AudioManager.instance.PlayMusic(GameAssets.i.overworldMusic);
+                    _player.isInCombat = false;
+                    _roamPosition = _startingPosition;
+                    _navMesh.destination = _roamPosition;
+                    _state = State.Roaming;
                 }
 
+                StartCoroutine(PursueAndAttackTarget());
+                //StartCoroutine(PerformAttack());
                 break;
         }
     }
 
-    private IEnumerator Attack()
+    private IEnumerator FindNextDestination()
+    {
+        _navMesh.isStopped = true;
+        var actions = -100 / (1 - activityLevel);
+        yield return new WaitForSeconds(actions);
+        _navMesh.isStopped = false;
+        _roamPosition = GetRoamingPosition();
+    }
+
+    private IEnumerator PerformAttack()
     {
         Vector3 attackDir = transform.position - _player.transform.position;
         attackDir.Normalize();
@@ -184,10 +205,79 @@ public class NPCController : MonoBehaviour
         _animator.SetBool(Attacking, true);
         aggroIndicator.gameObject.SetActive(false);
         var attack = attackAbility.CreateAttack(_myCharacter, _player);
-        _player.TakeDamage(attack.Damage);
+        //_player.TakeDamage(attack.Damage);
 
         yield return new WaitForSeconds(attackSpeed);
         _animator.SetBool(Attacking, false);
+    }
+
+    private IEnumerator PursueAndAttackTarget()
+    {
+        _navMesh.isStopped = false;
+        var weapon = GetCurrentWeapon();
+        while (Vector3.Distance(transform.position, attackTarget.transform.position) > weapon.attackDefinition.range)
+        {
+            //Debug.Log("Player is out of range of enemy!");
+            _navMesh.destination = attackTarget.transform.position;
+            yield return null;
+        }
+
+        _navMesh.isStopped = true;
+        Vector3 attackDir = transform.position - _player.transform.position;
+        attackDir.Normalize();
+        _animator.SetFloat(MoveX, attackDir.x);
+        _animator.SetFloat(MoveZ, attackDir.z);
+        _animator.SetBool(Attacking, true);
+        aggroIndicator.gameObject.SetActive(false);
+        if (_player.isInCombat == false)
+        {
+            AudioManager.instance.PlayVoice(aggroSound);
+            AudioManager.instance.PlayMusic(GameAssets.i.battleMusic);
+            _player.isInCombat = true;
+        }
+
+        yield return new WaitForSeconds(attackSpeed);
+        _animator.SetBool(Attacking, false);
+        //_animator.SetTrigger(Attack);
+    }
+
+    private Weapon GetCurrentWeapon()
+    {
+        var weapon = GetComponent<Character>().weapon.GetComponent<Weapon>();
+        return weapon;
+    }
+
+    public void Hit()
+    {
+        switch (attackAbility)
+        {
+            case WeaponAttack weaponAttack:
+                weaponAttack.ExecuteAttack(gameObject, _player.gameObject);
+                break;
+            case Spell spellAttack:
+                spellAttack.Cast(gameObject, spellHotSpot.position, _player.GetPosition(), LayerMask.NameToLayer("EnemySpells"));
+                break;
+        }
+    }
+
+    public void SetDestination(Vector3 destination)
+    {
+        StopAllCoroutines();
+        _navMesh.isStopped = false;
+        _navMesh.destination = destination;
+    }
+
+    public void AttackTarget(GameObject target)
+    {
+        var weapon = GetCurrentWeapon();
+        if (weapon != null)
+        {
+            StopAllCoroutines();
+
+            _navMesh.isStopped = false;
+            attackTarget = target;
+            StartCoroutine(PursueAndAttackTarget());
+        }
     }
 
     private enum State

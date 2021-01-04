@@ -6,13 +6,14 @@ public class Character : MonoBehaviour
 
     public string charName;
     public int maxHP = 20;
+    [SerializeField] private int hitPointsNumDice;
+    [SerializeField] private int hitPointsSizeDice;
     [SerializeField] private int attackDamage;
     [SerializeField] private int armorClass;
     public GameObject weapon;
 
     public HealthSystem HealthSystem;
     public Inventory Inventory;
-
 
     public static Character Instance { get; private set; }
 
@@ -21,7 +22,7 @@ public class Character : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        HealthSystem = new HealthSystem(Dice.Roll(4, 8), 50);
+        HealthSystem = new HealthSystem(Dice.Roll(hitPointsNumDice, hitPointsSizeDice), maxHP);
         CurrentHP = HealthSystem.GetHealth();
         Inventory = new Inventory(UseItem);
         TimeSystem.OnTick_5 += RegenHealth;
@@ -57,22 +58,15 @@ public class Character : MonoBehaviour
         CombatText.Create(GetPosition() + new Vector3(0, 0f, -.1f), healing, false, Color.green);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, bool isCriticalHit)
     {
         damage = Mathf.Clamp(damage, 0, int.MaxValue); // Damage should never be negative.
 
-        // Calculate damage modifiers
-        var isCriticalHit = Random.Range(0, 100) < 30;
-        var damageTotal = Random.Range(1, damage);
-
-        if (isCriticalHit)
-            damageTotal *= 2;
-
-        HealthSystem.Damage(damageTotal);
+        HealthSystem.Damage(damage);
         OnHealthChanged?.Invoke();
-        Debug.Log($"{charName} takes {damageTotal} points of damage.");
+        Debug.Log($"{charName} takes {damage} points of damage.");
 
-        CombatText.Create(GetPosition() + new Vector3(0, 0f, -.1f), damageTotal, isCriticalHit,
+        CombatText.Create(GetPosition() + new Vector3(0, 0f, -.1f), damage, isCriticalHit,
             new Color32(255, 128, 0, 255));
 
         if (HealthSystem.GetHealth() <= 0) Die();

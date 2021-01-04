@@ -6,6 +6,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     [SerializeField] private AudioSource backgroundMusic;
     [SerializeField] private AudioSource soundEffect;
+    [SerializeField] private AudioSource voiceLayer;
 
     private void Awake()
     {
@@ -50,6 +51,12 @@ public class AudioManager : MonoBehaviour
     {
         soundEffect.clip = sound;
         soundEffect.PlayOneShot(sound);
+    }
+
+    public void PlayVoice(AudioClip sound)
+    {
+        voiceLayer.clip = sound;
+        voiceLayer.PlayOneShot(sound);
     }
 
     private void StopBGM()

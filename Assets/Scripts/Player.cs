@@ -11,6 +11,7 @@ public class Player : Character
 
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private UIInventory _uiInventory;
+    public bool isInCombat = false;
     private Camera _camera;
     private Vector3 _change = Vector3.zero;
     private Inventory _inventory;
@@ -18,6 +19,7 @@ public class Player : Character
     private Character _myCharacter;
     private Rigidbody _myRigidbody;
     private Weapon _myWeapon;
+    private GameObject attackTarget;
 
     // Start is called before the first frame update
     private void Start()
@@ -84,6 +86,26 @@ public class Player : Character
         else
         {
             _myAnimator.SetBool(Moving, false);
+        }
+    }
+
+    public void Hit()
+    {
+        // Have our weapon attack the target
+        if (attackTarget != null)
+        {
+            _myWeapon.GetComponent<WeaponAttack>().ExecuteAttack(gameObject, attackTarget);
+        }
+    }
+
+    public void AttackTarget(GameObject target)
+    {
+        var attack = _myWeapon.GetComponent<WeaponAttack>().CreateAttack(_myCharacter, target.GetComponent<Character>());
+        var attackables = target.GetComponentsInChildren(typeof(IAttackable));
+
+        foreach (IAttackable attackable in attackables)
+        {
+            attackable.OnAttack(gameObject, attack);
         }
     }
 }

@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7100496087674199375
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1675651357768297203, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -7492938990079920370, guid: 8ce357eef2bbad74091eec5d88429856, type: 3}
+    - target: {fileID: 1675651358736070936, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+      propertyPath: m_Name
+      value: GreenWitch
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675651358736070940, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675651358736070940, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675651358736070940, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675651358736070940, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675651358736070940, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675651358736070940, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675651358736070940, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675651358736070940, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675651358736070940, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675651358736070940, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1675651358736070940, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2102067148945360081, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4bcf3aeff84303248baa21256d957084, type: 2}
+    - target: {fileID: 3129364100821183574, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+      propertyPath: attackDefinition
+      value: 
+      objectReference: {fileID: 11400000, guid: 4a9130065b6a43d46a7a9ecc3d25f462, type: 2}
+    - target: {fileID: 8415639594242689000, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+      propertyPath: spellHotSpot
+      value: 
+      objectReference: {fileID: 1923274012367737761}
+    - target: {fileID: 8415639594242689000, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+      propertyPath: attackAbility
+      value: 
+      objectReference: {fileID: 11400000, guid: 4a9130065b6a43d46a7a9ecc3d25f462, type: 2}
+    - target: {fileID: 8663465619166088942, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.527
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+--- !u!4 &1923274012367737761 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8663465619166088942, guid: deb721d9b6702a54a9291b83c6e195c3, type: 3}
+  m_PrefabInstance: {fileID: 7100496087674199375}
+  m_PrefabAsset: {fileID: 0}
