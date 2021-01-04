@@ -25,9 +25,8 @@ public class AttackDefinition : ScriptableObject
         if (defenderStats != null)
         {
             coreDamage -= defenderStats.GetArmor();
+            defenderStats.TakeDamage((int) coreDamage, isCritical);
         }
-
-        defenderStats.TakeDamage((int) coreDamage, isCritical);
 
         return new Attack((int) coreDamage, isCritical);
     }

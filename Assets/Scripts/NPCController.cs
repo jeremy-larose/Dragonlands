@@ -54,7 +54,7 @@ public class NPCController : MonoBehaviour
     {
         if (_behavior == Behavior.Wander)
         {
-            HandleNPCWander();
+            HandleNPCState();
         }
 
         if (_state == State.Attacking)
@@ -123,7 +123,7 @@ public class NPCController : MonoBehaviour
         }
     }
 
-    private void HandleNPCWander()
+    private void HandleNPCState()
     {
         switch (_state)
         {
@@ -182,7 +182,6 @@ public class NPCController : MonoBehaviour
                 }
 
                 StartCoroutine(PursueAndAttackTarget());
-                //StartCoroutine(PerformAttack());
                 break;
         }
     }
@@ -194,21 +193,6 @@ public class NPCController : MonoBehaviour
         yield return new WaitForSeconds(actions);
         _navMesh.isStopped = false;
         _roamPosition = GetRoamingPosition();
-    }
-
-    private IEnumerator PerformAttack()
-    {
-        Vector3 attackDir = transform.position - _player.transform.position;
-        attackDir.Normalize();
-        _animator.SetFloat(MoveX, attackDir.x);
-        _animator.SetFloat(MoveZ, attackDir.z);
-        _animator.SetBool(Attacking, true);
-        aggroIndicator.gameObject.SetActive(false);
-        var attack = attackAbility.CreateAttack(_myCharacter, _player);
-        //_player.TakeDamage(attack.Damage);
-
-        yield return new WaitForSeconds(attackSpeed);
-        _animator.SetBool(Attacking, false);
     }
 
     private IEnumerator PursueAndAttackTarget()
@@ -247,7 +231,7 @@ public class NPCController : MonoBehaviour
         return weapon;
     }
 
-    public void Hit()
+    private void Hit()
     {
         switch (attackAbility)
         {

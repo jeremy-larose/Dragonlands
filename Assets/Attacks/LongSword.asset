@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf8c72b6a7428e44b9a99e52d21e3c0b, type: 3}
+  m_Name: LongSword
+  m_EditorClassIdentifier: 
+  cooldown: 1
+  range: 1
+  minDamage: 1
+  maxDamage: 12
+  criticalMultiplier: 50
+  criticalChance: 10
+  attackSound: {fileID: 8300000, guid: 90122f1917968c145ad4c362e991d188, type: 3}
+  weaponPrefab: {fileID: 8958086268797152724, guid: dd77abf769241e347b1d346125ed65f2, type: 3}
