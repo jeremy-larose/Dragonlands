@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ItemGround : MonoBehaviour
+public class ItemGround : Interactable
 {
     [SerializeField] private Item _item;
 
@@ -37,6 +37,26 @@ public class ItemGround : MonoBehaviour
     public Item GetItem()
     {
         return _item;
+    }
+
+
+    public override void Interact()
+    {
+        if (playerInRange)
+        {
+            Debug.Log("Player is in range.");
+        }
+
+        if (player)
+        {
+            Debug.Log("[ItemGround] Adding item to inventory!");
+            player.inventory.AddItem(GetItem());
+            DestroySelf();
+        }
+        else
+        {
+            Debug.Log("[ItemGround] Player was null.");
+        }
     }
 
     public void DestroySelf()

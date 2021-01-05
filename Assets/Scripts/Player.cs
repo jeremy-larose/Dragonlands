@@ -14,12 +14,12 @@ public class Player : Character
     public bool isInCombat = false;
     private Camera _camera;
     private Vector3 _change = Vector3.zero;
-    private Inventory _inventory;
     private Animator _myAnimator;
     private Character _myCharacter;
     private Rigidbody _myRigidbody;
     private Weapon _myWeapon;
     private GameObject attackTarget;
+    public Inventory inventory;
 
     // Start is called before the first frame update
     private void Start()
@@ -27,12 +27,12 @@ public class Player : Character
         _myRigidbody = GetComponent<Rigidbody>();
         _myAnimator = GetComponentInChildren<Animator>();
         _myCharacter = GetComponent<Character>();
-        _inventory = _myCharacter.Inventory;
         _camera = Camera.main;
         _myWeapon = GetComponentInChildren<Weapon>();
+        inventory = _myCharacter.Inventory;
 
         _uiInventory.SetPlayer(this);
-        _uiInventory.SetInventory(_inventory);
+        _uiInventory.SetInventory(inventory);
     }
 
     // Update is called once per frame

@@ -53,3 +53,5 @@ MonoBehaviour:
   swordSprite: {fileID: 1571695429217454583, guid: 7a5287efc67939b4f813ea3a08a50e66, type: 3}
   healthPotionSprite: {fileID: -4987236710857148075, guid: 7a5287efc67939b4f813ea3a08a50e66, type: 3}
   coinSprite: {fileID: 6151569089762668857, guid: 7a5287efc67939b4f813ea3a08a50e66, type: 3}
+  pfDialogueWindow: {fileID: 2153559225334909931, guid: 51ad25428b452a044aafd9675f502062, type: 3}
+  pfChatText: {fileID: 2135506143886951412, guid: aff878e2f08b0e44a923e9e12c8c7d2a, type: 3}

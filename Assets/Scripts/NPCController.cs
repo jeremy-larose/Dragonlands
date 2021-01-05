@@ -52,6 +52,9 @@ public class NPCController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (_behavior == Behavior.Idle)
+            return;
+
         if (_behavior == Behavior.Wander)
         {
             HandleNPCState();

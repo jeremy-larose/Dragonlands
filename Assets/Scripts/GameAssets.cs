@@ -15,6 +15,8 @@ public class GameAssets : MonoBehaviour
     public Sprite swordSprite;
     public Sprite healthPotionSprite;
     public Sprite coinSprite;
+    public Transform pfDialogueWindow;
+    public Transform pfChatText;
 
     public static GameAssets i
     {

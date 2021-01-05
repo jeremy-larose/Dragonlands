@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public float radius = 1f; // How close to interact with the object
+    public float radius = 1.5f; // How close to interact with the object
     public Transform interactionTransform;
     public bool playerInRange = false;
-    private Transform player;
+    public Player player;
 
 
     private void Update()
@@ -23,13 +23,15 @@ public class Interactable : MonoBehaviour
         Gizmos.DrawWireSphere(interactionTransform.position, radius);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
+        player = other.gameObject.GetComponent<Player>();
         playerInRange = true;
     }
 
-    private void OnTriggerExit(Collider other)
+    public virtual void OnTriggerExit(Collider other)
     {
+        player = null;
         playerInRange = false;
     }
 
